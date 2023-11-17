@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>Starrysky&#39;s Blog</title>
   
   
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="http://dreamstarsky.github.com/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="http://dreamstarsky.github.com/"/>
   <updated>2023-11-17T09:03:03.326Z</updated>
-  <id>http://example.com/</id>
+  <id>http://dreamstarsky.github.com/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>Starrysky</name>
     
   </author>
   
@@ -18,8 +18,8 @@
   
   <entry>
     <title>梦开始的地方-xdoj版</title>
-    <link href="http://example.com/2023/11/17/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9-xdoj%E7%89%88/"/>
-    <id>http://example.com/2023/11/17/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9-xdoj%E7%89%88/</id>
+    <link href="http://dreamstarsky.github.com/2023/11/17/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9-xdoj%E7%89%88/"/>
+    <id>http://dreamstarsky.github.com/2023/11/17/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9-xdoj%E7%89%88/</id>
     <published>2023-11-17T08:27:22.000Z</published>
     <updated>2023-11-17T09:03:03.326Z</updated>
     
@@ -39,8 +39,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://example.com/2023/11/17/hello-world/"/>
-    <id>http://example.com/2023/11/17/hello-world/</id>
+    <link href="http://dreamstarsky.github.com/2023/11/17/hello-world/"/>
+    <id>http://dreamstarsky.github.com/2023/11/17/hello-world/</id>
     <published>2023-11-17T08:19:11.426Z</published>
     <updated>2023-11-17T08:19:11.426Z</updated>
     
