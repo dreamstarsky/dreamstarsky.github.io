@@ -6,7 +6,7 @@
   <link href="http://dreamstarsky.github.com/atom.xml" rel="self"/>
   
   <link href="http://dreamstarsky.github.com/"/>
-  <updated>2023-11-19T13:48:08.879Z</updated>
+  <updated>2023-11-19T13:50:33.123Z</updated>
   <id>http://dreamstarsky.github.com/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>我是笨比</title>
-    <link href="http://dreamstarsky.github.com/2023/11/18/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
-    <id>http://dreamstarsky.github.com/2023/11/18/%E4%BD%8D%E8%BF%90%E7%AE%97/</id>
-    <published>2023-11-18T08:46:22.000Z</published>
-    <updated>2023-11-19T13:48:08.879Z</updated>
+    <link href="http://dreamstarsky.github.com/2023/11/19/%E6%88%91%E6%98%AF%E7%AC%A8%E6%AF%94/"/>
+    <id>http://dreamstarsky.github.com/2023/11/19/%E6%88%91%E6%98%AF%E7%AC%A8%E6%AF%94/</id>
+    <published>2023-11-19T13:50:22.000Z</published>
+    <updated>2023-11-19T13:50:33.123Z</updated>
     
     <content type="html"><![CDATA[<h4 id="RT"><a href="#RT" class="headerlink" title="RT"></a>RT</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n,max=INT_MAX,min=INT_MIN,temp;</span><br><span class="line">cin &gt;&gt; n;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> j=e;j&lt;n;j++)</span><br><span class="line">&#123;</span><br><span class="line">    cin &gt;&gt; temp;</span><br><span class="line">    <span class="keyword">if</span> (max&lt;temp)max=temp;</span><br><span class="line">    <span class="keyword">if</span>(min&gt;temp)min=temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
