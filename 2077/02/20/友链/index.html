@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Starrysky&#39;s Blog">
-    <title>KMP - Starrysky&#39;s Blog</title>
+    <title>友链 - Starrysky&#39;s Blog</title>
     <meta name="author" content="Starrysky">
     
     
@@ -15,16 +15,16 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Starrysky","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"菜鸡的kmp算法小笔记思路如果比较的这一处前缀和后缀相等且该处模板和字符串不相等，那么就无需比较前缀，直接跳转到前缀后一位继续比较，若还不相等，重复上述操作，直至相等或到达模板的开头，这样就可以减少比较\n那么找到模板的所有前后缀相等的地方，存入ne数组，ne[i]表示下标为i时最大前后缀长度\n实现make_next初始化next数组（用next可能冲突所以建议用ne\n1234567891011121314151617void make_next(vector&lt;int&gt;&amp; ne,vector&lt;int&gt;&amp; moban)&#123;    if (moban.size()==0)        return;    ne.push_back(0);    for (unsigned long long i=1,j=0;i&lt;moban.size();i++)    &#123;        //j代表现在要比较的位置 &amp;&amp; 当前最大前缀长度-1（就是最大前缀的末尾的位置啦        while (moban[i]!=moban[j] &amp;&amp; j)            j=ne[j-1];            //该处不相等，跳转到最大前缀后一位继续比较        if (moban[i]==moban[j]) j++;            //如果相等，则j后移一位        ne.push_back(j);            //添加最大前缀到ne[i]（j后移过了，所以现在j是前缀的后一位啦    &#125;&#125;\n\nfind查找是否包含模板串：\n12345678910111213bool find(vector&lt;int&gt;&amp; s,vector&lt;int&gt; moban)&#123;    vector&lt;int&gt; ne;    make_next(ne,moban);    for (unsigned long long i=0,j=0;i&lt;s.size();i++)    &#123;        while (moban[j]!=s[i] &amp;&amp; j)            j=ne[j-1];        if (s[i]==moban[j]) j++;            if (j==moban.size()-1) return 1;    &#125;    return 0;&#125;\n查找模板串出现的位置：\n123456789101112131415vector&lt;int&gt; find(vector&lt;int&gt;&amp; s,vector&lt;int&gt; moban)&#123;    vector&lt;int&gt; ne,answer;    make_next(ne,moban);    for (int i=0,j=0;i&lt;s.size();i++)    &#123;        while (j &amp;&amp; s[i]!=moban[j])            j=ne[j-1];        if (s1[j]==s2[i]) j++;        if (j==s1.size()) &#123;answer.push_back(i-j+1);j=ne[j-1];&#125;        //这里模板串到头了，所以要回退到前缀的后一位继续比较    &#125;    return answer;    //这里存的是出现处的下标&#125;\n\n（写的依托，应该没人看吧","dateCreated":"2023-11-22T14:55:22+08:00","dateModified":"2023-11-22T14:55:53+08:00","datePublished":"2023-11-22T14:55:22+08:00","description":"","headline":"KMP","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://dreamstarsky.github.com/2023/11/22/KMP/"},"publisher":{"@type":"Organization","name":"Starrysky","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://dreamstarsky.github.com/2023/11/22/KMP/"}</script>
-    <meta name="description" content="菜鸡的kmp算法小笔记思路如果比较的这一处前缀和后缀相等且该处模板和字符串不相等，那么就无需比较前缀，直接跳转到前缀后一位继续比较，若还不相等，重复上述操作，直至相等或到达模板的开头，这样就可以减少比较 那么找到模板的所有前后缀相等的地方，存入ne数组，ne[i]表示下标为i时最大前后缀长度 实现make_next初始化next数组（用next可能冲突所以建议用ne 123456789101112">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Starrysky","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"晨曦佬\nhttps://dreamskycx.github.io/\n\nhzrr\nhttps://blog.hzrr.xyz/\n\n","dateCreated":"2077-02-20T11:45:14+08:00","dateModified":"2023-11-25T11:51:34+08:00","datePublished":"2077-02-20T11:45:14+08:00","description":"","headline":"友链","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://dreamstarsky.github.com/2077/02/20/%E5%8F%8B%E9%93%BE/"},"publisher":{"@type":"Organization","name":"Starrysky","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://dreamstarsky.github.com/2077/02/20/%E5%8F%8B%E9%93%BE/"}</script>
+    <meta name="description" content="晨曦佬 https:&#x2F;&#x2F;dreamskycx.github.io&#x2F;  hzrr https:&#x2F;&#x2F;blog.hzrr.xyz&#x2F;">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="KMP">
-<meta property="og:url" content="http://dreamstarsky.github.com/2023/11/22/KMP/index.html">
+<meta property="og:title" content="友链">
+<meta property="og:url" content="http://dreamstarsky.github.com/2077/02/20/%E5%8F%8B%E9%93%BE/index.html">
 <meta property="og:site_name" content="Starrysky&#39;s Blog">
-<meta property="og:description" content="菜鸡的kmp算法小笔记思路如果比较的这一处前缀和后缀相等且该处模板和字符串不相等，那么就无需比较前缀，直接跳转到前缀后一位继续比较，若还不相等，重复上述操作，直至相等或到达模板的开头，这样就可以减少比较 那么找到模板的所有前后缀相等的地方，存入ne数组，ne[i]表示下标为i时最大前后缀长度 实现make_next初始化next数组（用next可能冲突所以建议用ne 123456789101112">
+<meta property="og:description" content="晨曦佬 https:&#x2F;&#x2F;dreamskycx.github.io&#x2F;  hzrr https:&#x2F;&#x2F;blog.hzrr.xyz&#x2F;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-11-22T06:55:22.000Z">
-<meta property="article:modified_time" content="2023-11-22T06:55:53.783Z">
+<meta property="article:published_time" content="2077-02-20T03:45:14.000Z">
+<meta property="article:modified_time" content="2023-11-25T03:51:34.875Z">
 <meta property="article:author" content="Starrysky">
 <meta name="twitter:card" content="summary">
     
@@ -322,14 +322,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            KMP
+            友链
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2023-11-22T14:55:22+08:00">
+    <time datetime="2077-02-20T11:45:14+08:00">
 	
-		    Nov 22, 2023
+		    Feb 20, 2077
     	
     </time>
     
@@ -341,17 +341,13 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h3 id="菜鸡的kmp算法小笔记"><a href="#菜鸡的kmp算法小笔记" class="headerlink" title="菜鸡的kmp算法小笔记"></a>菜鸡的kmp算法小笔记</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>如果比较的这一处前缀和后缀相等且该处模板和字符串不相等，那么就无需比较前缀，直接跳转到前缀后一位继续比较，若还不相等，重复上述操作，直至相等或到达模板的开头，这样就可以减少比较</p>
-<p>那么找到模板的所有前后缀相等的地方，存入<code>ne</code>数组，<code>ne[i]</code>表示下标为i时最大前后缀长度</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><h5 id="make-next"><a href="#make-next" class="headerlink" title="make_next"></a>make_next</h5><p>初始化<code>next</code>数组（用<code>next</code>可能冲突所以建议用<code>ne</code></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">make_next</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; ne,vector&lt;<span class="type">int</span>&gt;&amp; moban)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (moban.<span class="built_in">size</span>()==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    ne.<span class="built_in">push_back</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> i=<span class="number">1</span>,j=<span class="number">0</span>;i&lt;moban.<span class="built_in">size</span>();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//j代表现在要比较的位置 &amp;&amp; 当前最大前缀长度-1（就是最大前缀的末尾的位置啦</span></span><br><span class="line">        <span class="keyword">while</span> (moban[i]!=moban[j] &amp;&amp; j)</span><br><span class="line">            j=ne[j<span class="number">-1</span>];</span><br><span class="line">            <span class="comment">//该处不相等，跳转到最大前缀后一位继续比较</span></span><br><span class="line">        <span class="keyword">if</span> (moban[i]==moban[j]) j++;</span><br><span class="line">            <span class="comment">//如果相等，则j后移一位</span></span><br><span class="line">        ne.<span class="built_in">push_back</span>(j);</span><br><span class="line">            <span class="comment">//添加最大前缀到ne[i]（j后移过了，所以现在j是前缀的后一位啦</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h6 id="晨曦佬"><a href="#晨曦佬" class="headerlink" title="晨曦佬"></a>晨曦佬</h6><blockquote>
+<p><a target="_blank" rel="noopener" href="https://dreamskycx.github.io/">https://dreamskycx.github.io/</a></p>
+</blockquote>
+<h6 id="hzrr"><a href="#hzrr" class="headerlink" title="hzrr"></a>hzrr</h6><blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.hzrr.xyz/">https://blog.hzrr.xyz/</a></p>
+</blockquote>
 
-<h5 id="find"><a href="#find" class="headerlink" title="find"></a>find</h5><p>查找是否包含模板串：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">find</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; s,vector&lt;<span class="type">int</span>&gt; moban)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; ne;</span><br><span class="line">    <span class="built_in">make_next</span>(ne,moban);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> i=<span class="number">0</span>,j=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (moban[j]!=s[i] &amp;&amp; j)</span><br><span class="line">            j=ne[j<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">if</span> (s[i]==moban[j]) j++;    </span><br><span class="line">        <span class="keyword">if</span> (j==moban.<span class="built_in">size</span>()<span class="number">-1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>查找模板串出现的位置：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">find</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; s,vector&lt;<span class="type">int</span>&gt; moban)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; ne,answer;</span><br><span class="line">    <span class="built_in">make_next</span>(ne,moban);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (j &amp;&amp; s[i]!=moban[j])</span><br><span class="line">            j=ne[j<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">if</span> (s1[j]==s2[i]) j++;</span><br><span class="line">        <span class="keyword">if</span> (j==s1.<span class="built_in">size</span>()) &#123;answer.<span class="built_in">push_back</span>(i-j+<span class="number">1</span>);j=ne[j<span class="number">-1</span>];&#125;</span><br><span class="line">        <span class="comment">//这里模板串到头了，所以要回退到前缀的后一位继续比较</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> answer;</span><br><span class="line">    <span class="comment">//这里存的是出现处的下标</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="（写的依托，应该没人看吧"><a href="#（写的依托，应该没人看吧" class="headerlink" title="（写的依托，应该没人看吧"></a>（写的依托，应该没人看吧</h6>
             
 
 
@@ -365,14 +361,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2023/11/25/Trie/"
-                    data-tooltip="Trie"
-                    aria-label="PREVIOUS: Trie"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -382,9 +375,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2023/11/19/%E6%88%91%E6%98%AF%E7%AC%A8%E6%AF%94/"
-                    data-tooltip="我是笨比"
-                    aria-label="NEXT: 我是笨比"
+                    href="/2023/11/25/Trie/"
+                    data-tooltip="Trie"
+                    aria-label="NEXT: Trie"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -409,7 +402,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://dreamstarsky.github.com/2023/11/22/KMP/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://dreamstarsky.github.com/2077/02/20/%E5%8F%8B%E9%93%BE/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -422,7 +415,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://dreamstarsky.github.com/2023/11/22/KMP/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://dreamstarsky.github.com/2077/02/20/%E5%8F%8B%E9%93%BE/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -435,7 +428,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://dreamstarsky.github.com/2023/11/22/KMP/"
+                    target="new" href="https://plus.google.com/share?url=http://dreamstarsky.github.com/2077/02/20/%E5%8F%8B%E9%93%BE/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -480,14 +473,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2023/11/25/Trie/"
-                    data-tooltip="Trie"
-                    aria-label="PREVIOUS: Trie"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -497,9 +487,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2023/11/19/%E6%88%91%E6%98%AF%E7%AC%A8%E6%AF%94/"
-                    data-tooltip="我是笨比"
-                    aria-label="NEXT: 我是笨比"
+                    href="/2023/11/25/Trie/"
+                    data-tooltip="Trie"
+                    aria-label="NEXT: Trie"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -524,7 +514,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://dreamstarsky.github.com/2023/11/22/KMP/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://dreamstarsky.github.com/2077/02/20/%E5%8F%8B%E9%93%BE/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -537,7 +527,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://dreamstarsky.github.com/2023/11/22/KMP/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://dreamstarsky.github.com/2077/02/20/%E5%8F%8B%E9%93%BE/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -550,7 +540,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://dreamstarsky.github.com/2023/11/22/KMP/"
+                    target="new" href="https://plus.google.com/share?url=http://dreamstarsky.github.com/2077/02/20/%E5%8F%8B%E9%93%BE/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -584,7 +574,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://dreamstarsky.github.com/2023/11/22/KMP/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://dreamstarsky.github.com/2077/02/20/%E5%8F%8B%E9%93%BE/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -597,7 +587,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://dreamstarsky.github.com/2023/11/22/KMP/"
+                        href="https://twitter.com/intent/tweet?text=http://dreamstarsky.github.com/2077/02/20/%E5%8F%8B%E9%93%BE/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -610,7 +600,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://dreamstarsky.github.com/2023/11/22/KMP/"
+                        href="https://plus.google.com/share?url=http://dreamstarsky.github.com/2077/02/20/%E5%8F%8B%E9%93%BE/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>

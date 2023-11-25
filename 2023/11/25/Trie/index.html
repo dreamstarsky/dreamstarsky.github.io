@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Starrysky&#39;s Blog">
-    <title>Archives - Starrysky&#39;s Blog</title>
+    <title>Trie - Starrysky&#39;s Blog</title>
     <meta name="author" content="Starrysky">
     
     
@@ -15,12 +15,16 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{}</script>
-    <meta property="og:type" content="blog">
-<meta property="og:title" content="Starrysky&#39;s Blog">
-<meta property="og:url" content="http://dreamstarsky.github.com/archives/index.html">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Starrysky","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"Trie：高效存储查找字符串原理构建一个树，每个节点的[i]存下一关键值为i的节点的指针（其实是下标啦），再建一个数组存数值就好了\n\n例题为前缀匹配，若要求全匹配的话加个判断就好力\n\n例题\nhttps://www.luogu.com.cn/problem/P8306\n\nword code弱鸡代码啦\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485#include &lt;bits/stdc++.h&gt;using namespace std;const int N=3e6 + 10;int trie[N][62],sum,trieval[N];void intrie(string s);int findtrie(string s);void clear(void);void solve(void);int gettag(char c);int main()&#123;    ios::sync_with_stdio(false);cin.tie(NULL);    int n;    cin &gt;&gt; n;    while (n--)    &#123;        solve();        clear();    &#125;&#125;void solve()&#123;    string s;    int n,q;    cin &gt;&gt; n &gt;&gt; q;    while (n--)    &#123;        cin &gt;&gt; s;        intrie(s);    &#125;    while (q--)    &#123;        cin &gt;&gt; s;        cout &lt;&lt; findtrie(s) &lt;&lt; &#x27;\\n&#x27;;    &#125;&#125;void clear()&#123;    memset(trieval,0,(sum+1)*sizeof(int));    while (sum--)    &#123;        memset(trie[sum+1],0,62*sizeof(int));    &#125;    sum=0;    memset(trie[sum],0,62*sizeof(int));&#125;int gettag(char c)&#123;    if (c&gt;=&#x27;a&#x27; &amp;&amp; c&lt;=&#x27;z&#x27;)        return c-&#x27;a&#x27;;    else if (c&gt;=&#x27;A&#x27; &amp;&amp; c&lt;=&#x27;Z&#x27;) return c-&#x27;A&#x27;+26;    else return c-&#x27;0&#x27;+52;&#125;void intrie(string s)&#123;    int now=0;    for (int i=0;i&lt;s.size();i++)    &#123;        int temp=gettag(s[i]);        if (!trie[now][temp]) trie[now][temp]=++sum;        now=trie[now][temp];        trieval[now]++;    &#125;&#125;int findtrie(string s)&#123;    int now=0;    for (int i=0;i&lt;s.size();i++)    &#123;        int temp=gettag(s[i]);        if (!trie[now][temp]) return 0;        now=trie[now][temp];    &#125;    return trieval[now];&#125;","dateCreated":"2023-11-25T11:49:22+08:00","dateModified":"2023-11-25T11:49:19+08:00","datePublished":"2023-11-25T11:49:22+08:00","description":"","headline":"Trie","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://dreamstarsky.github.com/2023/11/25/Trie/"},"publisher":{"@type":"Organization","name":"Starrysky","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://dreamstarsky.github.com/2023/11/25/Trie/"}</script>
+    <meta name="description" content="Trie：高效存储查找字符串原理构建一个树，每个节点的[i]存下一关键值为i的节点的指针（其实是下标啦），再建一个数组存数值就好了  例题为前缀匹配，若要求全匹配的话加个判断就好力  例题 https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P8306  word code弱鸡代码啦 12345678910111213141516171819202122232425262728293">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Trie">
+<meta property="og:url" content="http://dreamstarsky.github.com/2023/11/25/Trie/index.html">
 <meta property="og:site_name" content="Starrysky&#39;s Blog">
+<meta property="og:description" content="Trie：高效存储查找字符串原理构建一个树，每个节点的[i]存下一关键值为i的节点的指针（其实是下标啦），再建一个数组存数值就好了  例题为前缀匹配，若要求全匹配的话加个判断就好力  例题 https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P8306  word code弱鸡代码啦 12345678910111213141516171819202122232425262728293">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-11-25T03:49:22.000Z">
+<meta property="article:modified_time" content="2023-11-25T03:49:19.037Z">
 <meta property="article:author" content="Starrysky">
 <meta name="twitter:card" content="summary">
     
@@ -41,6 +45,8 @@
     
 
     
+        
+    
 </head>
 
     <body>
@@ -50,7 +56,7 @@
 
     
 
-<header id="header" data-behavior="1">
+<header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a
@@ -77,7 +83,7 @@
             <!-- Define author's picture -->
 
 
-<nav id="sidebar" data-behavior="1">
+<nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
         
         
@@ -305,87 +311,22 @@
 </nav>
 
             
-            <div id="main" data-behavior="1"
+            <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
                         ">
                 
-    <section class="postShorten-group main-content-wrap">
+<article class="post">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2077/02/20/%E5%8F%8B%E9%93%BE/"
-                            aria-label=": 友链"
-                        >
-                            友链
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2077-02-20T11:45:14+08:00">
-	
-		    Feb 20, 2077
-    	
-    </time>
+        <div class="post-header main-content-wrap text-left">
     
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h6 id="晨曦佬"><a href="#晨曦佬" class="headerlink" title="晨曦佬"></a>晨曦佬</h6><blockquote>
-<p><a target="_blank" rel="noopener" href="https://dreamskycx.github.io/">https://dreamskycx.github.io/</a></p>
-</blockquote>
-<h6 id="hzrr"><a href="#hzrr" class="headerlink" title="hzrr"></a>hzrr</h6><blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.hzrr.xyz/">https://blog.hzrr.xyz/</a></p>
-</blockquote>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2077/02/20/%E5%8F%8B%E9%93%BE/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
+        <h1 class="post-title">
+            Trie
+        </h1>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2023/11/25/Trie/"
-                            aria-label=": Trie"
-                        >
-                            Trie
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
+        <div class="post-meta">
     <time datetime="2023-11-25T11:49:22+08:00">
 	
 		    Nov 25, 2023
@@ -394,10 +335,13 @@
     
 </div>
 
-            </div>
-            
-                <div class="postShorten-content">
-                    <h4 id="Trie：高效存储查找字符串"><a href="#Trie：高效存储查找字符串" class="headerlink" title="Trie：高效存储查找字符串"></a>Trie：高效存储查找字符串</h4><h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><p>构建一个树，每个节点的<code>[i]</code>存下一关键值为<code>i</code>的节点的指针（其实是下标啦），再建一个数组存数值就好了</p>
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h4 id="Trie：高效存储查找字符串"><a href="#Trie：高效存储查找字符串" class="headerlink" title="Trie：高效存储查找字符串"></a>Trie：高效存储查找字符串</h4><h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><p>构建一个树，每个节点的<code>[i]</code>存下一关键值为<code>i</code>的节点的指针（其实是下标啦），再建一个数组存数值就好了</p>
 <blockquote>
 <p>例题为前缀匹配，若要求全匹配的话加个判断就好力</p>
 </blockquote>
@@ -406,200 +350,117 @@
 </blockquote>
 <h6 id="word-code"><a href="#word-code" class="headerlink" title="word code"></a>word code</h6><p>弱鸡代码啦</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">3e6</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> trie[N][<span class="number">62</span>],sum,trieval[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">intrie</span><span class="params">(string s)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">findtrie</span><span class="params">(string s)</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">clear</span><span class="params">(<span class="type">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">(<span class="type">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">gettag</span><span class="params">(<span class="type">char</span> c)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);cin.<span class="built_in">tie</span>(<span class="literal">NULL</span>);</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">while</span> (n--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">solve</span>();</span><br><span class="line">        <span class="built_in">clear</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string s;</span><br><span class="line">    <span class="type">int</span> n,q;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; q;</span><br><span class="line">    <span class="keyword">while</span> (n--)</span><br><span class="line">    &#123;</span><br><span class="line">        cin &gt;&gt; s;</span><br><span class="line">        <span class="built_in">intrie</span>(s);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (q--)</span><br><span class="line">    &#123;</span><br><span class="line">        cin &gt;&gt; s;</span><br><span class="line">        cout &lt;&lt; <span class="built_in">findtrie</span>(s) &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">clear</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(trieval,<span class="number">0</span>,(sum+<span class="number">1</span>)*<span class="built_in">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">while</span> (sum--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">memset</span>(trie[sum+<span class="number">1</span>],<span class="number">0</span>,<span class="number">62</span>*<span class="built_in">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    sum=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">memset</span>(trie[sum],<span class="number">0</span>,<span class="number">62</span>*<span class="built_in">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">gettag</span><span class="params">(<span class="type">char</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (c&gt;=<span class="string">&#x27;a&#x27;</span> &amp;&amp; c&lt;=<span class="string">&#x27;z&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> c-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (c&gt;=<span class="string">&#x27;A&#x27;</span> &amp;&amp; c&lt;=<span class="string">&#x27;Z&#x27;</span>) <span class="keyword">return</span> c-<span class="string">&#x27;A&#x27;</span>+<span class="number">26</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> c-<span class="string">&#x27;0&#x27;</span>+<span class="number">52</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">intrie</span><span class="params">(string s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> temp=<span class="built_in">gettag</span>(s[i]);</span><br><span class="line">        <span class="keyword">if</span> (!trie[now][temp]) trie[now][temp]=++sum;</span><br><span class="line">        now=trie[now][temp];</span><br><span class="line">        trieval[now]++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">findtrie</span><span class="params">(string s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> temp=<span class="built_in">gettag</span>(s[i]);</span><br><span class="line">        <span class="keyword">if</span> (!trie[now][temp]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        now=trie[now][temp];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> trieval[now];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2023/11/25/Trie/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
             
+
+
         </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2023/11/22/KMP/"
-                            aria-label=": KMP"
-                        >
-                            KMP
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2023-11-22T14:55:22+08:00">
-	
-		    Nov 22, 2023
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h3 id="菜鸡的kmp算法小笔记"><a href="#菜鸡的kmp算法小笔记" class="headerlink" title="菜鸡的kmp算法小笔记"></a>菜鸡的kmp算法小笔记</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>如果比较的这一处前缀和后缀相等且该处模板和字符串不相等，那么就无需比较前缀，直接跳转到前缀后一位继续比较，若还不相等，重复上述操作，直至相等或到达模板的开头，这样就可以减少比较</p>
-<p>那么找到模板的所有前后缀相等的地方，存入<code>ne</code>数组，<code>ne[i]</code>表示下标为i时最大前后缀长度</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><h5 id="make-next"><a href="#make-next" class="headerlink" title="make_next"></a>make_next</h5><p>初始化<code>next</code>数组（用<code>next</code>可能冲突所以建议用<code>ne</code></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">make_next</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; ne,vector&lt;<span class="type">int</span>&gt;&amp; moban)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (moban.<span class="built_in">size</span>()==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    ne.<span class="built_in">push_back</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> i=<span class="number">1</span>,j=<span class="number">0</span>;i&lt;moban.<span class="built_in">size</span>();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//j代表现在要比较的位置 &amp;&amp; 当前最大前缀长度-1（就是最大前缀的末尾的位置啦</span></span><br><span class="line">        <span class="keyword">while</span> (moban[i]!=moban[j] &amp;&amp; j)</span><br><span class="line">            j=ne[j<span class="number">-1</span>];</span><br><span class="line">            <span class="comment">//该处不相等，跳转到最大前缀后一位继续比较</span></span><br><span class="line">        <span class="keyword">if</span> (moban[i]==moban[j]) j++;</span><br><span class="line">            <span class="comment">//如果相等，则j后移一位</span></span><br><span class="line">        ne.<span class="built_in">push_back</span>(j);</span><br><span class="line">            <span class="comment">//添加最大前缀到ne[i]（j后移过了，所以现在j是前缀的后一位啦</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="find"><a href="#find" class="headerlink" title="find"></a>find</h5><p>查找是否包含模板串：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">find</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; s,vector&lt;<span class="type">int</span>&gt; moban)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; ne;</span><br><span class="line">    <span class="built_in">make_next</span>(ne,moban);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> i=<span class="number">0</span>,j=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (moban[j]!=s[i] &amp;&amp; j)</span><br><span class="line">            j=ne[j<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">if</span> (s[i]==moban[j]) j++;    </span><br><span class="line">        <span class="keyword">if</span> (j==moban.<span class="built_in">size</span>()<span class="number">-1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>查找模板串出现的位置：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">find</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; s,vector&lt;<span class="type">int</span>&gt; moban)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; ne,answer;</span><br><span class="line">    <span class="built_in">make_next</span>(ne,moban);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (j &amp;&amp; s[i]!=moban[j])</span><br><span class="line">            j=ne[j<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">if</span> (s1[j]==s2[i]) j++;</span><br><span class="line">        <span class="keyword">if</span> (j==s1.<span class="built_in">size</span>()) &#123;answer.<span class="built_in">push_back</span>(i-j+<span class="number">1</span>);j=ne[j<span class="number">-1</span>];&#125;</span><br><span class="line">        <span class="comment">//这里模板串到头了，所以要回退到前缀的后一位继续比较</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> answer;</span><br><span class="line">    <span class="comment">//这里存的是出现处的下标</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="（写的依托，应该没人看吧"><a href="#（写的依托，应该没人看吧" class="headerlink" title="（写的依托，应该没人看吧"></a>（写的依托，应该没人看吧</h6>
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2023/11/22/KMP/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2023/11/19/%E6%88%91%E6%98%AF%E7%AC%A8%E6%AF%94/"
-                            aria-label=": 我是笨比"
-                        >
-                            我是笨比
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2023-11-19T21:50:22+08:00">
-	
-		    Nov 19, 2023
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h4 id="RT"><a href="#RT" class="headerlink" title="RT"></a>RT</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n,max=INT_MAX,min=INT_MIN,temp;</span><br><span class="line">cin &gt;&gt; n;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> j=e;j&lt;n;j++)</span><br><span class="line">&#123;</span><br><span class="line">    cin &gt;&gt; temp;</span><br><span class="line">    <span class="keyword">if</span> (max&lt;temp)max=temp;</span><br><span class="line">    <span class="keyword">if</span>(min&gt;temp)min=temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2023/11/19/%E6%88%91%E6%98%AF%E7%AC%A8%E6%AF%94/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2023/11/17/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9-xdoj%E7%89%88/"
-                            aria-label=": 梦开始的地方-xdoj版"
-                        >
-                            梦开始的地方-xdoj版
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2023-11-17T16:27:22+08:00">
-	
-		    Nov 17, 2023
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h4 id="抽象代码："><a href="#抽象代码：" class="headerlink" title="抽象代码："></a>抽象代码：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> Oo[<span class="number">3</span>][<span class="number">101</span>]=&#123;&#123;<span class="number">0</span>&#125;&#125;;</span><br><span class="line">    <span class="type">int</span> oo,O;</span><br><span class="line">    cin &gt;&gt; oo;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> o=<span class="number">0</span>;o&lt;oo;o++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin &gt;&gt; Oo[<span class="number">0</span>][o];</span><br><span class="line">        Oo[<span class="number">1</span>][Oo[<span class="number">0</span>][o]]=<span class="number">1</span>;</span><br><span class="line">        Oo[<span class="number">2</span>][Oo[<span class="number">0</span>][o]]=o;</span><br><span class="line">    &#125;</span><br><span class="line">    cin &gt;&gt; O;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> o=<span class="number">0</span>;o&lt;oo;o++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (O-Oo[<span class="number">0</span>][o]&gt;<span class="number">0</span> &amp;&amp; Oo[<span class="number">1</span>][O-Oo[<span class="number">0</span>][o]] &amp;&amp; o!=Oo[<span class="number">2</span>][O-Oo[<span class="number">0</span>][o]]) </span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; o &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; Oo[<span class="number">2</span>][O-Oo[<span class="number">0</span>][o]];</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2023/11/17/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9-xdoj%E7%89%88/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
         
         
-        <li class="pagination-number">page 1 of 1</li>
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2077/02/20/%E5%8F%8B%E9%93%BE/"
+                    data-tooltip="友链"
+                    aria-label="PREVIOUS: 友链"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2023/11/22/KMP/"
+                    data-tooltip="KMP"
+                    aria-label="NEXT: KMP"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://dreamstarsky.github.com/2023/11/25/Trie/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://dreamstarsky.github.com/2023/11/25/Trie/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://dreamstarsky.github.com/2023/11/25/Trie/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
     </ul>
 </div>
 
-</section>
+
+        
+        
+            
+        
+    </div>
+</article>
 
 
 
@@ -610,6 +471,154 @@
 </footer>
 
             </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2077/02/20/%E5%8F%8B%E9%93%BE/"
+                    data-tooltip="友链"
+                    aria-label="PREVIOUS: 友链"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2023/11/22/KMP/"
+                    data-tooltip="KMP"
+                    aria-label="NEXT: KMP"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://dreamstarsky.github.com/2023/11/25/Trie/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://dreamstarsky.github.com/2023/11/25/Trie/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://dreamstarsky.github.com/2023/11/25/Trie/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://dreamstarsky.github.com/2023/11/25/Trie/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://dreamstarsky.github.com/2023/11/25/Trie/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://dreamstarsky.github.com/2023/11/25/Trie/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
             
         </div>
         
@@ -647,6 +656,8 @@
 
 <!--SCRIPTS END-->
 
+
+    
 
 
 
