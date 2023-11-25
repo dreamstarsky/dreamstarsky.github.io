@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Starrysky","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"Trie：高效存储查找字符串原理构建一个树，每个节点的[i]存下一关键值为i的节点的指针（其实是下标啦），再建一个数组存数值就好了\n\n例题为前缀匹配，若要求全匹配的话加个判断就好力\n\n例题\nhttps://www.luogu.com.cn/problem/P8306\n\nword code弱鸡代码啦\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485#include &lt;bits/stdc++.h&gt;using namespace std;const int N=3e6 + 10;int trie[N][62],sum,trieval[N];void intrie(string s);int findtrie(string s);void clear(void);void solve(void);int gettag(char c);int main()&#123;    ios::sync_with_stdio(false);cin.tie(NULL);    int n;    cin &gt;&gt; n;    while (n--)    &#123;        solve();        clear();    &#125;&#125;void solve()&#123;    string s;    int n,q;    cin &gt;&gt; n &gt;&gt; q;    while (n--)    &#123;        cin &gt;&gt; s;        intrie(s);    &#125;    while (q--)    &#123;        cin &gt;&gt; s;        cout &lt;&lt; findtrie(s) &lt;&lt; &#x27;\\n&#x27;;    &#125;&#125;void clear()&#123;    memset(trieval,0,(sum+1)*sizeof(int));    while (sum--)    &#123;        memset(trie[sum+1],0,62*sizeof(int));    &#125;    sum=0;    memset(trie[sum],0,62*sizeof(int));&#125;int gettag(char c)&#123;    if (c&gt;=&#x27;a&#x27; &amp;&amp; c&lt;=&#x27;z&#x27;)        return c-&#x27;a&#x27;;    else if (c&gt;=&#x27;A&#x27; &amp;&amp; c&lt;=&#x27;Z&#x27;) return c-&#x27;A&#x27;+26;    else return c-&#x27;0&#x27;+52;&#125;void intrie(string s)&#123;    int now=0;    for (int i=0;i&lt;s.size();i++)    &#123;        int temp=gettag(s[i]);        if (!trie[now][temp]) trie[now][temp]=++sum;        now=trie[now][temp];        trieval[now]++;    &#125;&#125;int findtrie(string s)&#123;    int now=0;    for (int i=0;i&lt;s.size();i++)    &#123;        int temp=gettag(s[i]);        if (!trie[now][temp]) return 0;        now=trie[now][temp];    &#125;    return trieval[now];&#125;","dateCreated":"2023-11-25T11:49:22+08:00","dateModified":"2023-11-25T11:49:19+08:00","datePublished":"2023-11-25T11:49:22+08:00","description":"","headline":"Trie","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://dreamstarsky.github.com/2023/11/25/Trie/"},"publisher":{"@type":"Organization","name":"Starrysky","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://dreamstarsky.github.com/2023/11/25/Trie/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Starrysky","sameAs":["https://github.com/dreamstarsky","mailto","https://dreamstarsky.github.io/1145/1/4/%E5%8F%8B%E9%93%BE/"]},"articleBody":"Trie：高效存储查找字符串原理构建一个树，每个节点的[i]存下一关键值为i的节点的指针（其实是下标啦），再建一个数组存数值就好了\n\n例题为前缀匹配，若要求全匹配的话加个判断就好力\n\n例题\nhttps://www.luogu.com.cn/problem/P8306\n\nword code弱鸡代码啦\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485#include &lt;bits/stdc++.h&gt;using namespace std;const int N=3e6 + 10;int trie[N][62],sum,trieval[N];void intrie(string s);int findtrie(string s);void clear(void);void solve(void);int gettag(char c);int main()&#123;    ios::sync_with_stdio(false);cin.tie(NULL);    int n;    cin &gt;&gt; n;    while (n--)    &#123;        solve();        clear();    &#125;&#125;void solve()&#123;    string s;    int n,q;    cin &gt;&gt; n &gt;&gt; q;    while (n--)    &#123;        cin &gt;&gt; s;        intrie(s);    &#125;    while (q--)    &#123;        cin &gt;&gt; s;        cout &lt;&lt; findtrie(s) &lt;&lt; &#x27;\\n&#x27;;    &#125;&#125;void clear()&#123;    memset(trieval,0,(sum+1)*sizeof(int));    while (sum--)    &#123;        memset(trie[sum+1],0,62*sizeof(int));    &#125;    sum=0;    memset(trie[sum],0,62*sizeof(int));&#125;int gettag(char c)&#123;    if (c&gt;=&#x27;a&#x27; &amp;&amp; c&lt;=&#x27;z&#x27;)        return c-&#x27;a&#x27;;    else if (c&gt;=&#x27;A&#x27; &amp;&amp; c&lt;=&#x27;Z&#x27;) return c-&#x27;A&#x27;+26;    else return c-&#x27;0&#x27;+52;&#125;void intrie(string s)&#123;    int now=0;    for (int i=0;i&lt;s.size();i++)    &#123;        int temp=gettag(s[i]);        if (!trie[now][temp]) trie[now][temp]=++sum;        now=trie[now][temp];        trieval[now]++;    &#125;&#125;int findtrie(string s)&#123;    int now=0;    for (int i=0;i&lt;s.size();i++)    &#123;        int temp=gettag(s[i]);        if (!trie[now][temp]) return 0;        now=trie[now][temp];    &#125;    return trieval[now];&#125;","dateCreated":"2023-11-25T11:49:22+08:00","dateModified":"2023-11-25T11:49:19+08:00","datePublished":"2023-11-25T11:49:22+08:00","description":"","headline":"Trie","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://dreamstarsky.github.com/2023/11/25/Trie/"},"publisher":{"@type":"Organization","name":"Starrysky","sameAs":["https://github.com/dreamstarsky","mailto","https://dreamstarsky.github.io/1145/1/4/%E5%8F%8B%E9%93%BE/"]},"url":"http://dreamstarsky.github.com/2023/11/25/Trie/"}</script>
     <meta name="description" content="Trie：高效存储查找字符串原理构建一个树，每个节点的[i]存下一关键值为i的节点的指针（其实是下标啦），再建一个数组存数值就好了  例题为前缀匹配，若要求全匹配的话加个判断就好力  例题 https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P8306  word code弱鸡代码啦 12345678910111213141516171819202122232425262728293">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Trie">
@@ -181,7 +181,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="https://github.com/"
+                            href="https://github.com/dreamstarsky"
                             
                                 target="_blank"
                             
@@ -190,86 +190,6 @@
                         >
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="http://stackoverflow.com/users"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="Stack Overflow"
-                        >
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://twitter.com/"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="Twitter"
-                        >
-                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Twitter</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://facebook.com/"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="Facebook"
-                        >
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://plus.google.com/"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="Google +"
-                        >
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://www.linkedin.com/profile/"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="LinkedIn"
-                        >
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
                     </a>
             </li>
             
@@ -287,21 +207,19 @@
                     </a>
             </li>
             
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
                 <li class="sidebar-button">
                     
                         <a
                             class="sidebar-button-link "
-                            href="/atom.xml"
+                            href="https://dreamstarsky.github.io/1145/1/4/%E5%8F%8B%E9%93%BE/"
+                            
+                                target="_blank"
                             
                             rel="noopener"
-                            title="RSS"
+                            title="global.links"
                         >
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
+                        <i class="sidebar-button-icon fa fa-link" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">global.links</span>
                     </a>
             </li>
             
@@ -363,14 +281,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2077/02/20/%E5%8F%8B%E9%93%BE/"
-                    data-tooltip="友链"
-                    aria-label="PREVIOUS: 友链"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -478,14 +393,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2077/02/20/%E5%8F%8B%E9%93%BE/"
-                    data-tooltip="友链"
-                    aria-label="PREVIOUS: 友链"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>

@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Starrysky","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"菜鸡的kmp算法小笔记思路如果比较的这一处前缀和后缀相等且该处模板和字符串不相等，那么就无需比较前缀，直接跳转到前缀后一位继续比较，若还不相等，重复上述操作，直至相等或到达模板的开头，这样就可以减少比较\n那么找到模板的所有前后缀相等的地方，存入ne数组，ne[i]表示下标为i时最大前后缀长度\n实现make_next初始化next数组（用next可能冲突所以建议用ne\n1234567891011121314151617void make_next(vector&lt;int&gt;&amp; ne,vector&lt;int&gt;&amp; moban)&#123;    if (moban.size()==0)        return;    ne.push_back(0);    for (unsigned long long i=1,j=0;i&lt;moban.size();i++)    &#123;        //j代表现在要比较的位置 &amp;&amp; 当前最大前缀长度-1（就是最大前缀的末尾的位置啦        while (moban[i]!=moban[j] &amp;&amp; j)            j=ne[j-1];            //该处不相等，跳转到最大前缀后一位继续比较        if (moban[i]==moban[j]) j++;            //如果相等，则j后移一位        ne.push_back(j);            //添加最大前缀到ne[i]（j后移过了，所以现在j是前缀的后一位啦    &#125;&#125;\n\nfind查找是否包含模板串：\n12345678910111213bool find(vector&lt;int&gt;&amp; s,vector&lt;int&gt; moban)&#123;    vector&lt;int&gt; ne;    make_next(ne,moban);    for (unsigned long long i=0,j=0;i&lt;s.size();i++)    &#123;        while (moban[j]!=s[i] &amp;&amp; j)            j=ne[j-1];        if (s[i]==moban[j]) j++;            if (j==moban.size()-1) return 1;    &#125;    return 0;&#125;\n查找模板串出现的位置：\n123456789101112131415vector&lt;int&gt; find(vector&lt;int&gt;&amp; s,vector&lt;int&gt; moban)&#123;    vector&lt;int&gt; ne,answer;    make_next(ne,moban);    for (int i=0,j=0;i&lt;s.size();i++)    &#123;        while (j &amp;&amp; s[i]!=moban[j])            j=ne[j-1];        if (s1[j]==s2[i]) j++;        if (j==s1.size()) &#123;answer.push_back(i-j+1);j=ne[j-1];&#125;        //这里模板串到头了，所以要回退到前缀的后一位继续比较    &#125;    return answer;    //这里存的是出现处的下标&#125;\n\n（写的依托，应该没人看吧","dateCreated":"2023-11-22T14:55:22+08:00","dateModified":"2023-11-22T14:55:53+08:00","datePublished":"2023-11-22T14:55:22+08:00","description":"","headline":"KMP","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://dreamstarsky.github.com/2023/11/22/KMP/"},"publisher":{"@type":"Organization","name":"Starrysky","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://dreamstarsky.github.com/2023/11/22/KMP/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Starrysky","sameAs":["https://github.com/dreamstarsky","mailto","https://dreamstarsky.github.io/1145/1/4/%E5%8F%8B%E9%93%BE/"]},"articleBody":"菜鸡的kmp算法小笔记思路如果比较的这一处前缀和后缀相等且该处模板和字符串不相等，那么就无需比较前缀，直接跳转到前缀后一位继续比较，若还不相等，重复上述操作，直至相等或到达模板的开头，这样就可以减少比较\n那么找到模板的所有前后缀相等的地方，存入ne数组，ne[i]表示下标为i时最大前后缀长度\n实现make_next初始化next数组（用next可能冲突所以建议用ne\n1234567891011121314151617void make_next(vector&lt;int&gt;&amp; ne,vector&lt;int&gt;&amp; moban)&#123;    if (moban.size()==0)        return;    ne.push_back(0);    for (unsigned long long i=1,j=0;i&lt;moban.size();i++)    &#123;        //j代表现在要比较的位置 &amp;&amp; 当前最大前缀长度-1（就是最大前缀的末尾的位置啦        while (moban[i]!=moban[j] &amp;&amp; j)            j=ne[j-1];            //该处不相等，跳转到最大前缀后一位继续比较        if (moban[i]==moban[j]) j++;            //如果相等，则j后移一位        ne.push_back(j);            //添加最大前缀到ne[i]（j后移过了，所以现在j是前缀的后一位啦    &#125;&#125;\n\nfind查找是否包含模板串：\n12345678910111213bool find(vector&lt;int&gt;&amp; s,vector&lt;int&gt; moban)&#123;    vector&lt;int&gt; ne;    make_next(ne,moban);    for (unsigned long long i=0,j=0;i&lt;s.size();i++)    &#123;        while (moban[j]!=s[i] &amp;&amp; j)            j=ne[j-1];        if (s[i]==moban[j]) j++;            if (j==moban.size()-1) return 1;    &#125;    return 0;&#125;\n查找模板串出现的位置：\n123456789101112131415vector&lt;int&gt; find(vector&lt;int&gt;&amp; s,vector&lt;int&gt; moban)&#123;    vector&lt;int&gt; ne,answer;    make_next(ne,moban);    for (int i=0,j=0;i&lt;s.size();i++)    &#123;        while (j &amp;&amp; s[i]!=moban[j])            j=ne[j-1];        if (s1[j]==s2[i]) j++;        if (j==s1.size()) &#123;answer.push_back(i-j+1);j=ne[j-1];&#125;        //这里模板串到头了，所以要回退到前缀的后一位继续比较    &#125;    return answer;    //这里存的是出现处的下标&#125;\n\n（写的依托，应该没人看吧","dateCreated":"2023-11-22T14:55:22+08:00","dateModified":"2023-11-22T14:55:53+08:00","datePublished":"2023-11-22T14:55:22+08:00","description":"","headline":"KMP","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://dreamstarsky.github.com/2023/11/22/KMP/"},"publisher":{"@type":"Organization","name":"Starrysky","sameAs":["https://github.com/dreamstarsky","mailto","https://dreamstarsky.github.io/1145/1/4/%E5%8F%8B%E9%93%BE/"]},"url":"http://dreamstarsky.github.com/2023/11/22/KMP/"}</script>
     <meta name="description" content="菜鸡的kmp算法小笔记思路如果比较的这一处前缀和后缀相等且该处模板和字符串不相等，那么就无需比较前缀，直接跳转到前缀后一位继续比较，若还不相等，重复上述操作，直至相等或到达模板的开头，这样就可以减少比较 那么找到模板的所有前后缀相等的地方，存入ne数组，ne[i]表示下标为i时最大前后缀长度 实现make_next初始化next数组（用next可能冲突所以建议用ne 123456789101112">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="KMP">
@@ -181,7 +181,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="https://github.com/"
+                            href="https://github.com/dreamstarsky"
                             
                                 target="_blank"
                             
@@ -190,86 +190,6 @@
                         >
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="http://stackoverflow.com/users"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="Stack Overflow"
-                        >
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://twitter.com/"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="Twitter"
-                        >
-                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Twitter</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://facebook.com/"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="Facebook"
-                        >
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://plus.google.com/"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="Google +"
-                        >
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://www.linkedin.com/profile/"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="LinkedIn"
-                        >
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
                     </a>
             </li>
             
@@ -287,21 +207,19 @@
                     </a>
             </li>
             
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
                 <li class="sidebar-button">
                     
                         <a
                             class="sidebar-button-link "
-                            href="/atom.xml"
+                            href="https://dreamstarsky.github.io/1145/1/4/%E5%8F%8B%E9%93%BE/"
+                            
+                                target="_blank"
                             
                             rel="noopener"
-                            title="RSS"
+                            title="global.links"
                         >
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
+                        <i class="sidebar-button-icon fa fa-link" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">global.links</span>
                     </a>
             </li>
             
