@@ -1,0 +1,587 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Starrysky&#39;s Blog">
+    <title>万恶的xdoj - Starrysky&#39;s Blog</title>
+    <meta name="author" content="Starrysky">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Starrysky","sameAs":["https://github.com/dreamstarsky","mailto","https://dreamstarsky.github.io/1145/01/04/%E5%8F%8B%E9%93%BE/"]},"articleBody":"\n前言\n描述\n\n前言xdoj的抽象历史xdx不是很有体会但今天却是亲身体验到xdoj之抽象故开此blog小记一下\n描述题目编号466题意大抵是输入一个n输出按字典序排列的1~n的全排列数据很弱，最大的点n&#x3D;7\n博主代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;vector&lt;int&gt; way;vector&lt;bool&gt; used;void dfs(int now, vector&lt;int&gt; &amp;nums)&#123;    if (now == nums.size())    &#123;        for (int i = 0; i &lt; way.size(); i++)            cout &lt;&lt; way[i] &lt;&lt; &#x27; &#x27;;        cout &lt;&lt; endl;        return;    &#125;    for (int i = 0; i &lt; nums.size(); i++)    &#123;        if (!used[i])        &#123;            used[i] = 1;            way[now] = nums[i];            dfs(now + 1, nums);            used[i] = 0;        &#125;    &#125;&#125;void permute(vector&lt;int&gt; &amp;nums)&#123;    way.resize(nums.size());    used.resize(nums.size());    dfs(0, nums);&#125;    int main()&#123;    int n;    cin &gt;&gt; n;    vector&lt;int&gt; temp;    for (int i = 1; i &lt;= n; i++)        temp.push_back(i);    permute(temp);    return 0;&#125;\n\n提交上去竟然wa（输出超限）了一个点（n&#x3D;7）\n改动无果后怒焯std1234567891011121314151617181920212223242526272829#include&lt;iostream&gt;//P1706#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;string&gt;#include&lt;iomanip&gt;#include &lt;algorithm&gt;#include&lt;cmath&gt;#include&lt;vector&gt;#include&lt;set&gt;using namespace std;int a[10];int main()&#123;\tint n,i,j=1,k;\tcin&gt;&gt;n;\tfor(i=1;i&lt;=n;i++)\t &#123;a[i]=n-i+1;j*=i;&#125;//题目好像没说要从小到大输出     //但保险起见还是初始赋值为最大序列     //即a[1~n]=n~1;顺便计算n!\tfor(i=1;i&lt;=j;i++)\t &#123;next_permutation(a+1,a+n+1);\t  for(k=1;k&lt;=n;k++)\t   cout&lt;&lt;a[k]&lt;&lt; &#x27; &#x27;;//排一次输出一次       //空格建议复制\t  cout&lt;&lt;endl;\t &#125;\t return 0;&#125;\n\n还是wa在n&#x3D;7\n期间控制不输出多余的空格和回车也有试过，但还是输出超限\n直接二分查找输出超限的临界点123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;fstream&gt;using namespace std;vector&lt;int&gt; way;vector&lt;bool&gt; used;int sum=0;void dfs(int now, vector&lt;int&gt; &amp;nums)&#123;    if (now == nums.size())    &#123;        sum++;        if (sum&gt;672) return ;        for (int i = 0; i &lt; way.size(); i++)            cout &lt;&lt; way[i] &lt;&lt; &#x27; &#x27;;        cout &lt;&lt; endl;        return;    &#125;    for (int i = 0; i &lt; nums.size(); i++)    &#123;        if (!used[i])        &#123;            used[i] = 1;            way[now] = nums[i];            dfs(now + 1, nums);            used[i] = 0;        &#125;    &#125;&#125;void permute(vector&lt;int&gt; &amp;nums)&#123;    way.resize(nums.size());    used.resize(nums.size());    dfs(0, nums);&#125;    int main()&#123;    int n;    cin &gt;&gt; n;    vector&lt;int&gt; temp;    for (int i = 1; i &lt;= n; i++)        temp.push_back(i);    permute(temp);    return 0;&#125;\n\n竟然在620多行就输出超限了？？？可是$7!&#x3D;5040$啊但是限制输出行数刚好不超限却显示答案错误\n（有没有人告诉鼠鼠怎么会逝呢\n","dateCreated":"2023-12-05T11:45:22+08:00","dateModified":"2023-12-05T11:57:40+08:00","datePublished":"2023-12-05T11:45:22+08:00","description":"","headline":"万恶的xdoj","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://dreamstarsky.github.com/2023/12/05/%E4%B8%87%E6%81%B6%E7%9A%84xdoj/"},"publisher":{"@type":"Organization","name":"Starrysky","sameAs":["https://github.com/dreamstarsky","mailto","https://dreamstarsky.github.io/1145/01/04/%E5%8F%8B%E9%93%BE/"]},"url":"http://dreamstarsky.github.com/2023/12/05/%E4%B8%87%E6%81%B6%E7%9A%84xdoj/"}</script>
+    <meta name="description" content="前言 描述  前言xdoj的抽象历史xdx不是很有体会但今天却是亲身体验到xdoj之抽象故开此blog小记一下 描述题目编号466题意大抵是输入一个n输出按字典序排列的1~n的全排列数据很弱，最大的点n&#x3D;7 博主代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="万恶的xdoj">
+<meta property="og:url" content="http://dreamstarsky.github.com/2023/12/05/%E4%B8%87%E6%81%B6%E7%9A%84xdoj/index.html">
+<meta property="og:site_name" content="Starrysky&#39;s Blog">
+<meta property="og:description" content="前言 描述  前言xdoj的抽象历史xdx不是很有体会但今天却是亲身体验到xdoj之抽象故开此blog小记一下 描述题目编号466题意大抵是输入一个n输出按字典序排列的1~n的全排列数据很弱，最大的点n&#x3D;7 博主代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-05T03:45:22.000Z">
+<meta property="article:modified_time" content="2023-12-05T03:57:40.123Z">
+<meta property="article:author" content="Starrysky">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-vlxwqnhae0xqjykluc8ml5laoywqdy8udvv5djxppf80zkhk4vsgnlqyspqn.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Starrysky&#39;s Blog
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="Open the link: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="Categories"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="Tags"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="Archives"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="Search"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/dreamstarsky"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/mailto"
+                            
+                            rel="noopener"
+                            title="dreamstarsky@outlook.com"
+                        >
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">dreamstarsky@outlook.com</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://dreamstarsky.github.io/1145/01/04/%E5%8F%8B%E9%93%BE/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="友链"
+                        >
+                        <i class="sidebar-button-icon fa fa-link" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">友链</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            万恶的xdoj
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2023-12-05T11:45:22+08:00">
+	
+		    Dec 05, 2023
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E6%8F%8F%E8%BF%B0">描述</a></li>
+</ul>
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>xdoj的抽象历史xdx不是很有体会<br>但今天却是亲身体验到xdoj之抽象<br>故开此blog小记一下</p>
+<h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><h5 id="题目编号466"><a href="#题目编号466" class="headerlink" title="题目编号466"></a>题目编号466</h5><p>题意大抵是输入一个n<br>输出按字典序排列的1~n的全排列<br>数据很弱，最大的点n&#x3D;7</p>
+<h5 id="博主代码"><a href="#博主代码" class="headerlink" title="博主代码"></a>博主代码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; way;</span><br><span class="line">vector&lt;<span class="type">bool</span>&gt; used;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> now, vector&lt;<span class="type">int</span>&gt; &amp;nums)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (now == nums.<span class="built_in">size</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; way.<span class="built_in">size</span>(); i++)</span><br><span class="line">            cout &lt;&lt; way[i] &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!used[i])</span><br><span class="line">        &#123;</span><br><span class="line">            used[i] = <span class="number">1</span>;</span><br><span class="line">            way[now] = nums[i];</span><br><span class="line">            <span class="built_in">dfs</span>(now + <span class="number">1</span>, nums);</span><br><span class="line">            used[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">permute</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    way.<span class="built_in">resize</span>(nums.<span class="built_in">size</span>());</span><br><span class="line">    used.<span class="built_in">resize</span>(nums.<span class="built_in">size</span>());</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">0</span>, nums);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; temp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        temp.<span class="built_in">push_back</span>(i);</span><br><span class="line">    <span class="built_in">permute</span>(temp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>提交上去竟然wa（输出超限）了一个点（n&#x3D;7）</p>
+<h5 id="改动无果后怒焯std"><a href="#改动无果后怒焯std" class="headerlink" title="改动无果后怒焯std"></a>改动无果后怒焯std</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span><span class="comment">//P1706</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;set&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,i,j=<span class="number">1</span>,k;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	 &#123;a[i]=n-i+<span class="number">1</span>;j*=i;&#125;<span class="comment">//题目好像没说要从小到大输出</span></span><br><span class="line">     <span class="comment">//但保险起见还是初始赋值为最大序列</span></span><br><span class="line">     <span class="comment">//即a[1~n]=n~1;顺便计算n!</span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=j;i++)</span><br><span class="line">	 &#123;<span class="built_in">next_permutation</span>(a+<span class="number">1</span>,a+n+<span class="number">1</span>);</span><br><span class="line">	  <span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">	   cout&lt;&lt;a[k]&lt;&lt; <span class="string">&#x27; &#x27;</span>;<span class="comment">//排一次输出一次</span></span><br><span class="line">       <span class="comment">//空格建议复制</span></span><br><span class="line">	  cout&lt;&lt;endl;</span><br><span class="line">	 &#125;</span><br><span class="line">	 <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还是wa在n&#x3D;7</p>
+<p>期间控制不输出多余的空格和回车也有试过，但还是输出超限</p>
+<h5 id="直接二分查找输出超限的临界点"><a href="#直接二分查找输出超限的临界点" class="headerlink" title="直接二分查找输出超限的临界点"></a>直接二分查找输出超限的临界点</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; way;</span><br><span class="line">vector&lt;<span class="type">bool</span>&gt; used;</span><br><span class="line"><span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> now, vector&lt;<span class="type">int</span>&gt; &amp;nums)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (now == nums.<span class="built_in">size</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        sum++;</span><br><span class="line">        <span class="keyword">if</span> (sum&gt;<span class="number">672</span>) <span class="keyword">return</span> ;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; way.<span class="built_in">size</span>(); i++)</span><br><span class="line">            cout &lt;&lt; way[i] &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!used[i])</span><br><span class="line">        &#123;</span><br><span class="line">            used[i] = <span class="number">1</span>;</span><br><span class="line">            way[now] = nums[i];</span><br><span class="line">            <span class="built_in">dfs</span>(now + <span class="number">1</span>, nums);</span><br><span class="line">            used[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">permute</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    way.<span class="built_in">resize</span>(nums.<span class="built_in">size</span>());</span><br><span class="line">    used.<span class="built_in">resize</span>(nums.<span class="built_in">size</span>());</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">0</span>, nums);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; temp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        temp.<span class="built_in">push_back</span>(i);</span><br><span class="line">    <span class="built_in">permute</span>(temp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>竟然在620多行就输出超限了？？？<br>可是$7!&#x3D;5040$啊<br>但是限制输出行数刚好不超限却显示答案错误</p>
+<p>（有没有人告诉鼠鼠怎么会逝呢</p>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2023/11/25/Trie/"
+                    data-tooltip="Trie"
+                    aria-label="NEXT: Trie"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://dreamstarsky.github.com/2023/12/05/%E4%B8%87%E6%81%B6%E7%9A%84xdoj/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://dreamstarsky.github.com/2023/12/05/%E4%B8%87%E6%81%B6%E7%9A%84xdoj/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://dreamstarsky.github.com/2023/12/05/%E4%B8%87%E6%81%B6%E7%9A%84xdoj/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2023 Starrysky. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2023/11/25/Trie/"
+                    data-tooltip="Trie"
+                    aria-label="NEXT: Trie"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://dreamstarsky.github.com/2023/12/05/%E4%B8%87%E6%81%B6%E7%9A%84xdoj/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://dreamstarsky.github.com/2023/12/05/%E4%B8%87%E6%81%B6%E7%9A%84xdoj/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://dreamstarsky.github.com/2023/12/05/%E4%B8%87%E6%81%B6%E7%9A%84xdoj/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://dreamstarsky.github.com/2023/12/05/%E4%B8%87%E6%81%B6%E7%9A%84xdoj/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://dreamstarsky.github.com/2023/12/05/%E4%B8%87%E6%81%B6%E7%9A%84xdoj/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://dreamstarsky.github.com/2023/12/05/%E4%B8%87%E6%81%B6%E7%9A%84xdoj/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Starrysky</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-u1jdkdz2bvi9svxfw2ji4wk7xjhxvpc3cuspjrm8hvxhxzaujlqcscd5klen.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
